@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AtomicMarket</title>
+	<link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+	<h1>AtomicMarket</h1>
+	<label>Enter bill amount:</label>
+	<input type="number" id="billAmount">
+	<button id="purchaseButton">Purchase</button>
+	<br><br>
+	<label>Item total amount:</label>
+	<input type="text" id="billTotal">
+	
+	<br><br>
+	<h2>Choose what to buy:</h2>
+	<button class="button" onclick="showBeverages()">Beverages</button>
+	<button class="button" onclick="showBread()">Bread</button>
+	<button class="button" onclick="showCanned()">Canned</button>
+	<br><br>
+	<div  id="beverage-container" class="image-container">
+		<div class="groceryitems">
+			<div data-value="20.00" class="card">
+				<button class="bton img1"> </button>
+				<p>Nescafe: $20.00</p>
+				
+			</div>
+			<div data-value="20.00" class="card">
+				<button class="bton img2"> </button>
+				<p>Juice: $20.00</p>
+				
+			</div>
+			<div data-value="10.00" class="card">
+				<button class="bton img3"> </button>
+				<p>Soda: $10.00</p>
+				
+			</div>
+       </div> 
+	</div>
+
+	<div id="bread-container" class="image-container">
+		<div class="groceryitems">
+			<div data-value="15.00" class="card">
+				<button class="bton img4"> </button>
+				<p>Bread: $15</p>
+			</div>
+		<div data-value="15.00" class="card">
+			<button class="bton img5"> </button>
+			<p>Loaf: $15</p>
+		</div>
+        
+		</div>
+	</div>
+	<div id="canned-container" class="image-container">
+		<div class="groceryitems">
+			<div data-value="40.00" class="card">
+				<button class="bton img6"> </button>
+				<p>Vegetables: $40</p>
+			</div>
+		<div data-value="30.00" class="card">
+			<button class="bton img7"> </button>
+			<p>Sardines: $30</p>
+		</div>
+        
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const cards = document.getElementsByClassName('card')
+		const total = document.getElementById("billTotal")
+		
+		let totalVar = 0;
+
+		for(i = 0; i < cards.length; i++) {
+			cards[i].addEventListener('click', function() {
+				this.classList.toggle('item-container')
+				
+
+				const value = parseFloat(this.getAttribute('data-value'));
+				totalVar += this.classList.contains('item-container') ? value : -value;
+				total.value = totalVar.toFixed(2);
+
+			})
+		}
+
+		function showBeverages() {
+			document.getElementById("beverage-container").classList.add("show");
+			document.getElementById("bread-container").classList.remove("show");
+			document.getElementById("canned-container").classList.remove("show");
+		}
+	
+		function showBread() {
+			document.getElementById("beverage-container").classList.remove("show");
+			document.getElementById("bread-container").classList.add("show");
+			document.getElementById("canned-container").classList.remove("show");
+		}
+		
+		function showCanned() {
+			document.getElementById("beverage-container").classList.remove("show");
+			document.getElementById("bread-container").classList.remove("show");
+			document.getElementById("canned-container").classList.add("show");
+		}
+    
+		
+		function purchase() {
+			
+			var billAmount = parseInt(document.getElementById("billAmount").value);
+    
+			
+			if (isNaN(billAmount) || billAmount <= 0) {
+				alert("Please enter a valid bill amount.");
+				return;
+			}
+			
+			var totalAmount = 0;
+			if (document.getElementById("beverage-container").classList.contains("show")) {
+				totalAmount += 50;
+			}
+			if (document.getElementById("bread-container").classList.contains("show")) {
+				totalAmount += 30;
+			}
+			if (document.getElementById("canned-container").classList.contains("show")) {
+				totalAmount += 70;
+			}
+			
+			if (totalAmount <= billAmount) {
+				
+      var change = billAmount - totalAmount;
+				alert("Thank you for your purchase. Your change is: " + change);
+				
+				document.getElementById("billAmount").value = "";
+      }
+
+	 
+	  
+    }
+	purchaseButton.addEventListener('click', function() {
+		let billAmountValue = parseFloat(billAmount.Value);
+		let totalValue = parseFloat(total.Value);
+		let change = billAmountValue - totalValue;
+
+		if (billAmountValue == totalValue) {
+			alert("Thankyou for your purchase")
+			location.reload()
+		} else if (billAmountValue > totalValue) {
+			alert ("Thankyou for your purchase \n Your change is: " + change.toFixed(2))
+			location.reload()
+		} else if (billAmountValue < totalValue) {
+			alert ("your bill is invalid")
+		}
+	})
+    </script>
+ 
+
+
+    </body>
+</html>

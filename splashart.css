@@ -1,0 +1,38 @@
+body {
+    background-color: chocolate;
+    background-position: center;
+   background-size: cover;
+   background-attachment: fixed;
+   
+
+}
+.splashart {
+    height: 30%;
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 6.3%;
+    
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: aliceblue;
+}
+
+a {
+    font-size: larger;
+    font: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: white;
+   margin-left: 47.7%;
+   margin-top: 10px;
+   
+   
+
+    
+
+}
